@@ -18,7 +18,7 @@ Product.init(
     },
     product_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false, //does this have a foreign key?
     },
     price: {
       type: DataTypes.DECIMAL(8,2),
@@ -49,7 +49,7 @@ Product.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'product',
+    modelName: 'Product',
   }
 );
 
