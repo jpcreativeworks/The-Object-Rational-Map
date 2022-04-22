@@ -13,10 +13,7 @@ ProductTag.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    product_name: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+ 
     product_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -45,9 +42,3 @@ ProductTag.init(
 
 module.exports = ProductTag;
 
-reader_id: {
-  type: DataTypes.INTEGER,
-  references: {
-    model: 'reader',
-        key: 'id',
-      },

@@ -4,23 +4,12 @@ const { Category, Product } = require('../../models');
 // The `/api/categories` endpoint
 const Category = require('../../models/Category');
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   // find all categories
   // be sure to include its associated Products
   try {
     const categoryData = await Category.findAll({
-      include: [{ model: Product }, { model: Tag }],
-      attributes: {
-        include: [
-          [
-            // Use plain SQL to add up the total category
-            sequelize.literal(
-              '(SELECT SHOW(product) FROM category WHERE category.product_id = category.id)'
-            ),
-            'categoryTypes',
-          ],
-        ],
-      },
+      include: [{ model: Product }],      
     });
     res.status(200).json(categoryData);
   } catch (err) {
@@ -28,12 +17,12 @@ router.get('/', (req, res) => {
   }
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
   try {
     const categoryData = await Category.findByPk(req.params.id, {
-      include: [{ model: Tag }, { model: Product }],  
+      include: [{ model: Product }],  
     });
 
     if (!categoryData) {
@@ -50,9 +39,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   // create a new category
   Category.create({
-    id: req.body.id,
     categoryName: req.body.categoryName,
-    is_category: true
   })
     .then((newCategory) => {
       // Send the newly created row as a JSON object
@@ -68,10 +55,7 @@ router.put('/:id', (req, res) => {
   Category.update(
     {
       // All the fields you can update and the data attached to the request body.
-      product: req.body.product,
-      tag: req.body.tag,
-      id: req.body.id,
-      productTag: req.body.productTag,      
+      categoryName: req.body.categoryName,          
     },
     {
       // Gets the books based on the id given in the request parameters

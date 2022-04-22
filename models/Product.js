@@ -18,7 +18,7 @@ Product.init(
     },
     product_name: {
       type: DataTypes.STRING,
-      allowNull: false, //does this have a foreign key?
+      allowNull: false, 
     },
     price: {
       type: DataTypes.DECIMAL(8,2),
