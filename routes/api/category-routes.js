@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
 // The `/api/categories` endpoint
+const Category = require('../../models/Category');
 
 router.get('/', (req, res) => {
   // find all categories
@@ -12,7 +13,7 @@ router.get('/', (req, res) => {
       attributes: {
         include: [
           [
-            // Use plain SQL to add up the total mileage
+            // Use plain SQL to add up the total category
             sequelize.literal(
               '(SELECT SHOW(product) FROM category WHERE category.product_id = category.id)'
             ),
