@@ -39,7 +39,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', (req, res) => {
   // create a new category
   Category.create({
-    categoryName: req.body.categoryName,
+    category_name: req.body.category_name,
   })
     .then((newCategory) => {
       // Send the newly created row as a JSON object
@@ -55,7 +55,7 @@ router.put('/:id', (req, res) => {
   Category.update(
     {
       // All the fields you can update and the data attached to the request body.
-      categoryName: req.body.categoryName,          
+      category_name: req.body.categoryName,          
     },
     {
       // Gets the books based on the id given in the request parameters

@@ -12,9 +12,9 @@ Product.belongsTo(Category, {
 
 
   // Define a cagegory as having many products, thus creating a foreign key in the `category_id` table
-  Category.hasMany(Product, {
-    foreignKey: 'category_id',
-  });
+Category.hasMany(Product, {
+  foreignKey: 'category_id',
+});
   // The association can also be created from the category side
 
 // Products belongToMany Tags (through ProductTag)
@@ -31,9 +31,4 @@ Tag.belongsToMany(Product, {
   foreignKey: 'tag_id',
   through: ProductTag
 });
-module.exports = {
-  Product,
-  Category,
-  Tag,
-  ProductTag,
-};
+module.exports = { Product, Category, Tag, ProductTag };
