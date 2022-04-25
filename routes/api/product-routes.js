@@ -3,7 +3,7 @@ const { DataTypes } = require('sequelize/types');
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
-const Product = require('../../models/Product');
+// const Product = require('../../models/Product');
 
 // get all products
 router.get('/', async (req, res) => {

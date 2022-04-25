@@ -3,7 +3,7 @@ const { Tag, Product, ProductTag } = require('../../models');
 const { restore } = require('../../models/Category');
 
 // The `/api/tags` endpoint
-const Tag = require('../../models/Tag');
+// const Tag = require('../../models/Tag');
 
 
 router.get('/', async (req, res) => {
