@@ -16,6 +16,7 @@ app.use(routes);
 //   console.log(`App listening on port ${PORT}!`);
 // });
 //syncs your data base and structures your schemas
+//force tru drops the tables and builds them from scratch, 
 sequelize.sync({ force: false }).then(() => {
   //here doing an app listen, doing what it did before but we are syncing our data bases and then listening for aour express app
   app.listen(PORT, () => console.log('Now listening'));
