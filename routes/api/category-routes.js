@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
     });
 
     if (!categoryData) {
-      res.status(404).json({ message: 'No category found with that id!' });
+      res.status(404).json({ message: 'Sorry, no category found with that id!' });
       return;
     }
 
@@ -83,10 +83,17 @@ router.delete('/:id', (req, res) => {
       id: req.params.id,
     },
   })
-    .then((deletedCategory) => {
-      res.json(deletedCategory);
+    .then(deletedChosenCategory => {
+      if (!deletedChosenCategory) {
+        res.status(404).json({ message: 'Sorry, no Category mataches that ID.'});
+        return;
+      }
+      res.json(deletedChosenCategory);
     })
-    .catch((err) => res.json(err));
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err)
+    });
 });
 
 module.exports = router;
