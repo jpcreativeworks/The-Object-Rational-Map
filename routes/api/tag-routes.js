@@ -96,10 +96,17 @@ router.delete('/:id', (req, res) => {
       id: req.params.id,
     },
   })
-    .then((deletedTag) => {
-      res.json(deletedTag);
+    .then((deletedTagChoice) => {
+      if(!deletedTagChoice) {
+      res.status(404).json({ message: 'Sorry, no Tag found by that Id.'});
+      return;
+      }
+      res.json(deletedTagChoice);
     })
-    .catch((err) => res.json(err));
+    .catch((err) => {
+      console.log(err);
+      res.json(err);
+    });
 });
 
 module.exports = router;

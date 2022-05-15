@@ -121,10 +121,17 @@ router.delete('/:id', (req, res) => {
       id: req.params.id,
     },
   })
-    .then((deletedProduct) => {
-      res.json(deletedProduct);
+    .then((deletedProductChoice) => {
+      if(!deletedProductChoice) {
+        res.status(404).json({ message: 'Sorry, no Product found by that Id.'});
+        return;
+      }
+      res.json(deletedProductChoice);
     })
-    .catch((err) => res.json(err));
+    .catch((err) => {
+      console.log(err);
+      res.json(err);
+    });
 });
 
 module.exports = router;
