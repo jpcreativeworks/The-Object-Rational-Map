@@ -39,10 +39,12 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', (req, res) => {
   // create a new tag
-  Tag.create(req.body).then((tag) => {
-    res.status(200).json(tag)
+  Tag.create({
+    tag_name:req.body.tag_name
   })
+  .then((newTagData) => res.json(newTagData))
     .catch((err) => {
+      console.log(err);
       res.status(404).json(err)
     })
 });
